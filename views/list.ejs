@@ -8,5 +8,18 @@
 </head>
 <body>
   <h1> <%= headingdate %> </h1>
+  <br><br>
+  <form action="/" method="post">
+    <input type="text" name="task" id="task" placeholder="Enter your Task " autofocus>
+    <input type="submit" name="submit" value="Submit">
+  </form>
+  <br>
+  <br>
+  <h4>Tasks</h4>
+  <ul>
+    <% todolist.forEach(listitem => { %>
+      <li><%= listitem %> </li>
+    <% }) %>
+  </ul>
 </body>
 </html>
