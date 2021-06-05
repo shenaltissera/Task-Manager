@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To do list </title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <h1> <%= headingdate %> </h1>
-  <br><br>
-  <form action="/" method="post">
-    <input type="text" name="task" id="task" placeholder="Enter your Task " autofocus>
-    <input type="submit" name="submit" value="Submit">
+  <div class="box" id="heading">
+      <%= headingdate %>
+  </div>
+  <div class="box">
+    <% todolist.forEach(listitem=> { %>
+      <div class="item">
+        <input type="checkbox" class="checkbox">
+        <p>
+          <%= listitem %>
+        </p>
+      </div>
+      <% }) %>
+  <form class="item" action="/" method="post">
+    <input type="text" name="task" id="task" placeholder="New item " autofocus autocomplete="off">
+    <button type="submit">+</button>
   </form>
-  <br>
-  <br>
-  <h4>Tasks</h4>
-  <ul>
-    <% todolist.forEach(listitem => { %>
-      <li><%= listitem %> </li>
-    <% }) %>
-  </ul>
+  </div>
 </body>
+
 </html>
