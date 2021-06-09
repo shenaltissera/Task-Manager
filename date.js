@@ -1,20 +1,19 @@
-module.exports.currdate = currdate
-function currdate(){
-     const date = new Date()
-     const options = {
+// module.exports and exports is the same thing
+const date = new Date()
+let options = {}
+
+exports.currdate = function (){
+      options = {
        weekday:'long',
        month:'long',
        day:'numeric' 
      }
-     let headingdate = date.toLocaleDateString('en-us',options)
-     return headingdate
+      return date.toLocaleDateString('en-us',options)
     }
-module.exports.currday = currday
-function currday(){
-  const date = new Date()
-  const options = {
+
+exports.currday = function (){
+  options = {
     weekday:'long',
   }
-  let headingday = date.toLocaleDateString('en-us',options)
-  return headingday
+  return date.toLocaleDateString('en-us',options)
 }
