@@ -13,7 +13,7 @@
 
 <body>
   <div class="box" id="heading">
-      <%= headingdate %>
+      <%= listtype %>
   </div>
   <div class="box">
     <% todolist.forEach(listitem=> { %>
@@ -26,7 +26,7 @@
       <% }) %>
   <form class="item" action="/" method="post">
     <input type="text" name="task" id="task" placeholder="New item " autofocus autocomplete="off">
-    <button type="submit">+</button>
+    <button type="submit" name="list" value=<%= listtype %>>+</button>
   </form>
   </div>
 </body>
