@@ -1,20 +1,14 @@
 const express = require('express')
 const app = express()
+const date = require(__dirname+"/date.js")
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
 let tasks = []
 let worktasks = []
 app.get('/',(req,res)=>{
-    
-     const date = new Date()
-    const options = {
-      weekday:'long',
-      month:'long',
-      day:'numeric' 
-    }
-    let headingdate = date.toLocaleDateString('en-us',options)
-    res.render('list',{listtype:headingdate,todolist:tasks})
+    let day = date()
+    res.render('list',{listtype:day,todolist:tasks})
 })
 app.post('/',(req,res)=>{
   let task = req.body.task; 
