@@ -16,9 +16,6 @@ app.get('/',(req,res)=>{
     let headingdate = date.toLocaleDateString('en-us',options)
     res.render('list',{listtype:headingdate,todolist:tasks})
 })
-app.get('/work',(req,res) => {
-    res.render('list',{listtype:'work',todolist:worktasks})
-})
 app.post('/',(req,res)=>{
   let task = req.body.task; 
   if(req.body.list === "work") {
@@ -29,6 +26,12 @@ app.post('/',(req,res)=>{
     tasks.push(task)   
     res.redirect('/')
   }
+})
+app.get('/work',(req,res) => {
+    res.render('list',{listtype:'work',todolist:worktasks})
+})
+app.get("/about",(req,res)=>{
+  res.render("about")
 })
 app.listen(3000,()=>{
   console.log('server is running at port 3000')
