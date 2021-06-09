@@ -7,7 +7,7 @@ app.use(express.static('public'))
 let tasks = []
 let worktasks = []
 app.get('/',(req,res)=>{
-    let day = date()
+    let day = date.currdate()
     res.render('list',{listtype:day,todolist:tasks})
 })
 app.post('/',(req,res)=>{
