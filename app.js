@@ -2,7 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const ObjectId = require('mongodb').ObjectID
 const app = express()
-const date = require(__dirname+"/date.js")
 const Task = require(__dirname+"/models/task.js")
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
@@ -20,7 +19,6 @@ mongoose.connect('mongodb://localhost:27017/todolistDB',{useNewUrlParser:true,us
 
 
 app.get('/',async (req,res)=>{
-    let day = date.currdate()
     const tasks = await Task.find({},{content:1})
     if(tasks.length === 0){
       const item1 = new Task(
@@ -41,7 +39,7 @@ app.get('/',async (req,res)=>{
       await Task.insertMany([item1,item2,item3])
       res.redirect('/')
     }else{
-    res.render('list',{listtype:day,todolist:tasks})  
+    res.render('list',{listtype:'Today',todolist:tasks})  
     }
 })
 
