@@ -8,6 +8,6 @@ const taskschema = schema({
   }
 })
 
-const Task = mongoose.model('task',taskschema)
+const List = mongoose.model('task',taskschema)
 
-module.exports = Task
+module.exports = {List,taskschema}
