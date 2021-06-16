@@ -12,7 +12,7 @@ app.use(express.static('public'))
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(result=>{
   console.log('DB connected')
   app.listen(process.env.PORT || 3000,()=>{
-  console.log('server is running on port 3000')
+  console.log('Server started succesfully')
   })
 }).catch(err=>{
   console.error(err)
