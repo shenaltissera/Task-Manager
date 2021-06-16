@@ -6,7 +6,7 @@ const CustomL = require(__dirname+"/models/customlist.js")
 const url = 'mongodb+srv://lmd:lmdrdx123@todolist-cluster.nnsvl.mongodb.net/todolistDB?retryWrites=true&w=majority'
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(result=>{
