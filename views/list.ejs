@@ -11,12 +11,13 @@
           <p>
             <%= listitem.content %>
           </p>
+          <input type="hidden" name="listname" value="<%=listtype%>">
         </div>
       </form>
       <% }) %>
   <form class="item" action="/" method="post">
     <input type="text" name="task" id="task" placeholder="New item " autofocus autocomplete="off">
-    <button type="submit" name="list">+</button>
+    <button type="submit" name="list" value="<%=listtype%>">+</button>
   </form>
   </div>
   <%- include("footer") -%> 

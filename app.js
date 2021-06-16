@@ -49,28 +49,48 @@ app.get('/',async (req,res)=>{
 
 app.post('/',async (req,res)=>{
   const checktask = req.body.task
+  const listname = req.body.list
   if(checktask === '') {
     console.log('task is null')
-  } else {
+    if(listname === 'Today'){
+      res.redirect('/')
+    } else {
+      res.redirect('/'+listname)
+    }
+  } else {    
     let task = new List({
       content:checktask
     }); 
-    await task.save()
+    if(listname === 'Today'){
+     await task.save()
+     res.redirect('/')
+    } else {
+      CustomL.findOne({name:listname},(err,foundlist)=>{
+        foundlist.content.push(task)
+        foundlist.save()
+        res.redirect('/'+listname)
+      })
+    }
   }
-  res.redirect('/')
 })
  
 
 app.post('/delete',async (req,res)=>{
   let itemcontent = req.body.checkbox 
+  let listname = req.body.listname
+  if(listname === "Today"){
   await List.deleteOne({content:itemcontent})
-  res.redirect('/') 
+  res.redirect('/')
+  } else {
+    await CustomL.findOneAndUpdate({name:listname},{$pull:{content:{content:itemcontent}}})
+    res.redirect('/'+listname)
+  }
 })
  
 
 app.get('/:customlistname',async (req,res)=>{
   const custlistname = req.params.customlistname
-  if(custlistname === 'compose'){
+  if(custlistname === 'compose'|| custlistname === 'favicon.ico'){
     return
   }
   const findlistname = await CustomL.findOne({name:custlistname})
@@ -83,8 +103,14 @@ app.get('/:customlistname',async (req,res)=>{
   console.log('document saved')
   res.redirect('/'+custlistname)
   } else {
-    res.render('list',{listtype:custlistname,todolist:findlistname.content})
+    res.render('list',
+    {
+     listtype:custlistname,
+     todolist:findlistname.content
+    })
   }
+  res.redirect('/'+custlistname)
 })
+
 
    
