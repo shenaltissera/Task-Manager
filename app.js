@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const app = express()
 const List = require(__dirname+"/models/list.js").List
 const CustomL = require(__dirname+"/models/customlist.js")
-const url = 'mongodb+srv://lmd:lmdrdx123@todolist-cluster.nnsvl.mongodb.net/todolistDB?retryWrites=true&w=majority'
+const url = 'mongodb+srv://@todolist-cluster.nnsvl.mongodb.net/todolistDB?retryWrites=true&w=majority'
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
