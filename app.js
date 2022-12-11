@@ -9,6 +9,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'))
 
 
+//connect to mongoDB
 mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(result=>{
   console.log('DB connected')
   app.listen(process.env.PORT || 3000,()=>{
